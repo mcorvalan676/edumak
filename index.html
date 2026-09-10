@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EduMap</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>EduMap</h1>
+      <span>Mapa y navegación del establecimiento</span>
+    </div>
+    <div class="auth">
+      <span id="userLabel">No conectado</span>
+      <button id="logoutBtn" class="secondary hidden">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <h2>Buscar un lugar</h2>
+      <div class="search-row">
+        <input id="searchInput" placeholder="Ej: Sala 205, Biblioteca, Laboratorio">
+        <button id="searchBtn">Buscar</button>
+      </div>
+      <div id="searchResults" class="results"></div>
+    </section>
+
+    <section class="grid">
+      <div class="panel">
+        <h2>Mapa</h2>
+        <div id="map"></div>
+        <div class="route-controls">
+          <select id="fromNode"></select>
+          <select id="toNode"></select>
+          <label><input id="accessibleOnly" type="checkbox"> Solo ruta accesible</label>
+          <button id="routeBtn">Calcular ruta</button>
+        </div>
+        <p id="routeResult" class="status"></p>
+      </div>
+
+      <aside class="panel">
+        <h2>Acceso</h2>
+        <form id="authForm">
+          <input id="email" type="email" placeholder="Correo" required>
+          <input id="password" type="password" placeholder="Contraseña" required minlength="6">
+          <div class="button-row">
+            <button type="submit">Iniciar sesión</button>
+            <button type="button" id="registerBtn" class="secondary">Registrarme</button>
+          </div>
+        </form>
+        <p id="authMessage" class="status"></p>
+
+        <hr>
+        <h3>Favoritos</h3>
+        <div id="favorites" class="results">Inicia sesión para ver tus favoritos.</div>
+
+        <hr>
+        <h3>Panel admin</h3>
+        <div id="adminPanel" class="hidden">
+          <p>Administrador conectado.</p>
+          <button id="reloadBtn" class="secondary">Recargar datos</button>
+        </div>
+        <p id="adminHint" class="muted">Disponible para usuarios con rol admin.</p>
+      </aside>
+    </section>
+
+    <section class="panel">
+      <h2>Espacios</h2>
+      <div id="spaces" class="cards"></div>
+    </section>
+  </main>
+
+  <footer>
+    EduMap · GitHub + Cloudflare + Supabase · Proyecto educativo
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
